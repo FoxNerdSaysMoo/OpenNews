@@ -5,7 +5,7 @@ URL = 'https://lite.cnn.com/en'
 
 
 def _extract(soup):
-    news = {URL+i.get('href'): i.text for i in soup.find_all('a') if i.get('href').count('/') == 3}
+    news = {URL[:-3]+i.get('href'): i.text for i in soup.find_all('a') if i.get('href').count('/') == 3}
     return news
 
 
