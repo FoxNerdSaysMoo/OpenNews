@@ -8,7 +8,7 @@
 import opennews
 
 opennews.get_all_news()
-# {'https://lite.cnn.com/en/en/article/h_dba861346d41e987119c7dd582b9ce26': 'Kyiv: Ukrainians fight to keep control of their capital', 'https://lite.cnn.com/en/en/article/h_9a2e01ad1a0d0ad6bae3da70a986ac89': 'Analysis: US intelligence got it right on Ukraine', 'https://lite.cnn.com/en/en/article/h_13235222fe8a657308f4e2e716cd4aa7': ...
+# {'https://lite.cnn.com/en/article/h_dba861346d41e987119c7dd582b9ce26': 'Kyiv: Ukrainians fight to keep control of their capital', 'https://lite.cnn.com/en/article/h_9a2e01ad1a0d0ad6bae3da70a986ac89': 'Analysis: US intelligence got it right on Ukraine', 'https://lite.cnn.com/en/article/h_13235222fe8a657308f4e2e716cd4aa7': ...
 ```
 
 It also supports async
@@ -17,7 +17,7 @@ import opennews
 import asyncio
 
 asyncio.run(opennews.get_all_news_async())
-# {'https://lite.cnn.com/en/en/article/h_dba861346d41e987119c7dd582b9ce26': 'Kyiv: Ukrainians fight to keep control of their capital', 'https://lite.cnn.com/en/en/article/h_9a2e01ad1a0d0ad6bae3da70a986ac89': 'Analysis: US intelligence got it right on Ukraine', 'https://lite.cnn.com/en/en/article/h_13235222fe8a657308f4e2e716cd4aa7': ...
+# {'https://lite.cnn.com/en/article/h_dba861346d41e987119c7dd582b9ce26': 'Kyiv: Ukrainians fight to keep control of their capital', 'https://lite.cnn.com/en/article/h_9a2e01ad1a0d0ad6bae3da70a986ac89': 'Analysis: US intelligence got it right on Ukraine', 'https://lite.cnn.com/en/article/h_13235222fe8a657308f4e2e716cd4aa7': ...
 ```
 
 The scraper currently only scrapes from 
