@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "opennews"
-version = "0.1.0"
+version = "0.1.1"
 description = "An open source scraper to get current news."
 authors = ["Zeb Taylor <zceboys@gmail.com>"]
 license = "LGPL-3.0"
