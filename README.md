@@ -59,3 +59,4 @@ Please open a PR on GitHub if you want to contribute!
 - [ ] Add more sources
 - [ ] Make an API
 - [ ] Make deeper search to find thumbnail, content, etc.
+- [ ] Fix WSJ

@@ -1,5 +1,6 @@
-from opennews import get_all_news_async
+from opennews import getnews
+import json
 import asyncio
 
-print(asyncio.run(get_all_news_async()))
+print(*asyncio.run(getnews.get_news_async()), sep="\n")
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "opennews"
-version = "0.0.2"
+version = "0.1.0"
 description = "An open source scraper to get current news."
 authors = ["Zeb Taylor <zceboys@gmail.com>"]
 license = "LGPL-3.0"
@@ -9,8 +9,11 @@ homepage="https://github.com/foxnerdsaysmoo/opennews"
 
 [tool.poetry.dependencies]
 python = ">=3.8"
-requests = "*"
+feedparser = "*"
+grequests = "*"
 aiohttp = "*"
+pydantic = "*"
+urllib3 = "*"
 
 [tool.poetry.dev-dependencies]
 
