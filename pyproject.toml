@@ -2,6 +2,18 @@
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core>=1.0.0"]
 
+[tool.isort]
+profile = "black"
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "line-too-long",
+    "import-error"
+]
+
 [tool]
 [tool.poetry]
 authors = ["Zeb Taylor <zceboys@gmail.com>"]
@@ -26,3 +38,6 @@ isort = "^5.10.1"
 mypy = "^0.931"
 pre-commit = "^2.17.0"
 pylint = "^2.12.2"
+
+[tool.pylint.master]
+extension-pkg-whitelist = ["pydantic"]

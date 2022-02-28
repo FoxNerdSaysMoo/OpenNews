@@ -2,7 +2,8 @@ from typing import Set
 
 from pydantic import BaseModel
 
-class RssURLs(BaseModel):
+
+class RSSURLS(BaseModel):  # pylint: disable=too-few-public-methods
     FOX: Set[str] = {"http://feeds.foxnews.com/foxnews/latest"}
 
     CNN: Set[str] = {
@@ -103,7 +104,7 @@ class RssURLs(BaseModel):
         "http://www.npr.org/rss/rss.php?id=1019",
     }
 
-    BBC̈: Set[str] = {
+    BBC: Set[str] = {
         "http://feeds.bbci.co.uk/news/rss.xml",
         "http://feeds.bbci.co.uk/news/world/rss.xml",
         "http://feeds.bbci.co.uk/news/uk/rss.xml",
@@ -129,7 +130,7 @@ class RssURLs(BaseModel):
 
     SCIENCE_DAILY: Set[str] = {"http://feeds.sciencedaily.com/sciencedaily"}
 
-    NATURE = {"http://feeds.nature.com/nature/rss/current"}
+    NATURE: Set[str] = {"http://feeds.nature.com/nature/rss/current"}
 
     NASA_PIC_OF_THE_DAY: Set[str] = {
         "https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss"

@@ -1,14 +1,14 @@
-from .fetch import fetch, fetch_async
-from .parse import parse
-from .rss import RssURLs
-
 from typing import Set
 
-RSS_URLS: Set[str] = set.union(*RssURLs().dict().values())
+from .fetch import fetch, fetch_async
+from .parse import parse
+from .rss import RSSURLS
+
+RSS_URLS: Set[str] = set.union(*RSSURLS().dict().values())
 
 
 def get_news_generator(source: str = ""):
-    urls = RSS_URLS if source == "" else RssURLs().dict()[source]
+    urls = RSS_URLS if source == "" else RSSURLS().dict()[source]
     for resp in fetch(urls):
         yield parse(resp)
 
@@ -18,7 +18,7 @@ def get_news(source: str = ""):
 
 
 async def get_news_async_generator(source: str = ""):
-    urls = RSS_URLS if source == "" else RssURLs().dict()[source]
+    urls = RSS_URLS if source == "" else RSSURLS().dict()[source]
     for resp in await fetch_async(urls):
         yield parse(resp)
 

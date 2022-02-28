@@ -1,5 +1,5 @@
 import asyncio
-from typing import Tuple
+from typing import Generator, Tuple
 
 import aiohttp
 import grequests as gr  # type: ignore[import]
@@ -7,16 +7,18 @@ import grequests as gr  # type: ignore[import]
 
 async def fetch_async(urls: Tuple[str, ...]) -> Tuple[str, ...]:
     tasks = []
-    for url in urls:
 
-        async def req():
-            async with aiohttp.get(url) as response:
+    async def req(feed: str):
+        async with aiohttp.ClientSession() as session:
+            async with session.request(url=feed) as response:
                 return await response.text()
 
-        tasks.append(asyncio.ensure_future(req()))
+    for url in urls:
+        tasks.append(asyncio.ensure_future(req(url)))
     return await asyncio.gather(*tasks)
 
 
-def fetch(urls: Tuple[str, ...]) -> Tuple[str, ...]:
+def fetch(urls: Tuple[str, ...]) -> Generator[str, None, None]:
     reqs = (gr.get(u) for u in urls)
-    return tuple([i.text for i in gr.map(reqs)])
+    for i in gr.map(reqs):
+        yield i.text
