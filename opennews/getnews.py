@@ -1,37 +1,27 @@
-from .parse import parse
 from .fetch import fetch, fetch_async
+from .parse import parse
+from .rss import RssURLs
 
-import re
-import importlib.resources as pkg_resources
+from typing import Set
 
-rss_urls = []
-clever_regex = r"# (.*)\n((?:.+\n)*)"
-rss_sources = {}
-rss_raw = pkg_resources.read_text(__package__, "rss.txt")
-
-for line in rss_raw.splitlines():
-    if line.startswith("#") or line == "":
-        continue
-    rss_urls.append(line.strip())
-for source in re.findall(clever_regex, rss_raw):
-    rss_sources[source[0].lower().replace(" ", "")] = source[1].splitlines()
+RSS_URLS: Set[str] = set.union(*RssURLs().dict().values())
 
 
-def get_news_generator(source: str = ''):
-    urls = rss_urls if source == '' else rss_sources[source]
+def get_news_generator(source: str = ""):
+    urls = RSS_URLS if source == "" else RssURLs().dict()[source]
     for resp in fetch(urls):
         yield parse(resp)
 
 
-def get_news(source: str = ''):
+def get_news(source: str = ""):
     return [x for i in get_news_generator(source) for x in i]
 
 
-async def get_news_async_generator(source: str = ''):
-    urls = rss_urls if source == '' else rss_sources[source]
+async def get_news_async_generator(source: str = ""):
+    urls = RSS_URLS if source == "" else RssURLs().dict()[source]
     for resp in await fetch_async(urls):
         yield parse(resp)
 
 
-async def get_news_async(source: str = ''):
+async def get_news_async(source: str = ""):
     return [x async for i in get_news_async_generator(source) for x in i]
