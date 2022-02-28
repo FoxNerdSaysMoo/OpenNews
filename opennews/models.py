@@ -1,26 +1,27 @@
-import pydantic
+from typing import List, Optional, Union
+
+from pydantic import BaseModel
 
 
-class Media(pydantic.BaseModel):
+class Media(BaseModel):
     url: str
     medium: str = "unknown"  # Some of them don't have a medium
-    width: str | int = -1  # Idk why it is a string sometimes
-    height: str | int = -1
+    width: Union[str, int] = -1  # Idk why it is a string sometimes
+    height: Union[str, int] = -1
 
 
-class Tag(pydantic.BaseModel):
+class Tag(BaseModel):
     term: str
-    scheme: str = None
-    label: str = None
+    scheme: Optional[str] = None
+    label: Optional[str] = None
 
 
-class Article(pydantic.BaseModel):
+class Article(BaseModel):
     title: str
     link: str
-    summary: str = None
-    author: str = None
-    published: str = None
-    published_parsed: list = None
-    tags: list[Tag] = []
-    media_content: list[Media] = []
-
+    summary: Optional[str] = None
+    author: Optional[str] = None
+    published: Optional[str] = None
+    published_parsed: Optional[List] = None
+    tags: List[Tag] = []
+    media_content: List[Media] = []
