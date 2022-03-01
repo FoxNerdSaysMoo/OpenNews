@@ -1,8 +1,8 @@
 import asyncio
 from typing import Generator, Tuple
 
-import aiohttp
-import grequests as gr  # type: ignore[import]
+import grequests as gr  # isort:skip # type: ignore[import]
+import aiohttp  # isort:skip  This is needed because grequests must be imported before aiohttp
 
 
 async def fetch_async(urls: Tuple[str, ...]) -> Tuple[Tuple[str, str], ...]:

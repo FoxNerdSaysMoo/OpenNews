@@ -22,7 +22,7 @@ asyncio.run(opennews.get_news_async())
 # ... (a ton more)
 ```
 
-The scraper currently only scrapes from 
+The scraper currently only scrapes from
 - FOX
 - CNN
 - The Guardian
@@ -58,10 +58,43 @@ import asyncio
 
 asyncio.run(opennews.get_news_async("cnn"))
 ```
-The name you can use is the name of the website, lowercased and without spaces. 
+The name you can use is the name of the website (from the list of sites up above), caps locked and with `_` replacing spaces.
 
-(From the code: `rss_sources[source[0].lower().replace(" ", "")]`)
+(For example, NASA Picture of the Day is `NASA_PICTURE_OF_THE_DAY`)
 
+## Documentation
+
+Currently, sadly we don't have any documentation.
+But you can contribute!
+
+Here are some samples though:
+
+```py
+from opennews import get_news_generator
+
+for article in get_news_generator("cnn"):
+    print(article)
+# Also has an async counterpart, `get_news_generator_async`
+
+from opennews import utils
+from opennews import Article, get_news
+import json
+
+with open("archive.json", "w") as f:
+    f.write(get_news())  # Save the news to a file
+    # (all the articles are Pydantic models, so they're JSON serializable)
+
+# Sometime in the future...
+archive = json.loads(open("archive.json").read())
+archive_articles = [Article(**article) for article in archive]
+
+print(utils.difference(archive_articles, get_news()))
+# ^^^ Print articles that are in archive but not in the current news
+
+print(utils.difference(get_news(), archive_articles))
+# ^^^ Print articles that are in the current news but not in the archive
+# This uses set.difference, fyi
+```
 
 ## License
 This repository is under the LGPL License as described in the LICENSE file.
