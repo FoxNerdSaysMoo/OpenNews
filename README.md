@@ -81,7 +81,7 @@ from opennews import Article, get_news
 import json
 
 with open("archive.json", "w") as f:
-    f.write(get_news())  # Save the news to a file
+    f.write(json.dumps([i.dict() for i in get_news()]))  # Save the news to a file
     # (all the articles are Pydantic models, so they're JSON serializable)
 
 # Sometime in the future...
