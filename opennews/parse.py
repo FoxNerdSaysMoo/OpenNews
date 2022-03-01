@@ -11,4 +11,4 @@ def parse(content: str) -> Tuple[Article, ...]:
     Currently only here to make it less painful if I want to modify the parsing.
     """
     parsed = feedparser.parse(content)
-    return tuple(map(Article.parse_obj, parsed))
+    return tuple(Article(**i) for i in parsed.entries)

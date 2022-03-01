@@ -9,8 +9,11 @@ RSS_URLS: Set[str] = set.union(*RSSURLS().dict().values())
 
 def get_news_generator(source: str = ""):
     urls = RSS_URLS if source == "" else RSSURLS().dict()[source]
-    for resp in fetch(urls):
-        yield parse(resp)
+    for resp, feed in fetch(urls):
+        parsed = parse(resp)
+        for article in parsed:
+            article.feed_link = feed
+        yield parsed
 
 
 def get_news(source: str = ""):
@@ -19,8 +22,11 @@ def get_news(source: str = ""):
 
 async def get_news_async_generator(source: str = ""):
     urls = RSS_URLS if source == "" else RSSURLS().dict()[source]
-    for resp in await fetch_async(urls):
-        yield parse(resp)
+    for resp, feed in await fetch_async(urls):
+        parsed = parse(resp)
+        for article in parsed:
+            article.feed_link = feed
+        yield parsed
 
 
 async def get_news_async(source: str = ""):

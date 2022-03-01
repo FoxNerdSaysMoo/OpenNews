@@ -6,3 +6,4 @@ from .getnews import (
 )
 from .models import Article, Media, Tag
 from .parse import parse
+from .utils import difference, intersection

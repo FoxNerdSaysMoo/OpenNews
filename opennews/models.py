@@ -19,9 +19,18 @@ class Tag(BaseModel):
 class Article(BaseModel):
     title: str
     link: str
+    feed_link: Optional[str] = None
     summary: Optional[str] = None
     author: Optional[str] = None
     published: Optional[str] = None
     published_parsed: Optional[List] = None
     tags: List[Tag] = []
     media_content: List[Media] = []
+
+    def __hash__(self) -> int:
+        values = self.dict()
+        values.pop("media_content")
+        values.pop("tags")
+        if values["published_parsed"] is not None:
+            values["published_parsed"] = tuple(values["published_parsed"])
+        return hash(tuple(sorted(values.items())))
