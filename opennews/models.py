@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class Media(BaseModel):
-    url: str
+    url: str = "unknown"  # I have literally no idea why some don't specify this
     medium: str = "unknown"  # Some of them don't have a medium
     width: Union[str, int] = -1  # Idk why it is a string sometimes
     height: Union[str, int] = -1
@@ -31,6 +31,7 @@ class Article(BaseModel):
         values = self.dict()
         values.pop("media_content")
         values.pop("tags")
+        values.pop("feed_link")
         if values["published_parsed"] is not None:
             values["published_parsed"] = tuple(values["published_parsed"])
         return hash(tuple(sorted(values.items())))
