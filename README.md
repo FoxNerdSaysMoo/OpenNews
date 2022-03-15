@@ -2,6 +2,18 @@
 
 ### An open source news scraper (soon to be an API)
 
+## Installation
+
+It's as easy as pip!
+```
+$ pip install opennews
+```
+
+Or, if you are adventurous and want to install from git:
+```
+$ git clone https://github.com/FoxNerdSaysMoo/OpenNews.git && cd OpenNews && poetry install
+```
+
 ## Usage
 
 ```py
